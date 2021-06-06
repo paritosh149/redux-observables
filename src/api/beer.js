@@ -1,7 +1,7 @@
 import { ofType } from "redux-observable";
 import { concat, of } from "rxjs";
 import { ajax } from "rxjs/ajax"
-import { catchError, debounceTime, delay, filter, map, switchMap } from "rxjs/operators";
+import { catchError, debounceTime, map, switchMap } from "rxjs/operators";
 import { fetchSuccessAction, fetchFailedAction } from "../actions/beerActions";
 
 
