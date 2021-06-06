@@ -10,13 +10,13 @@ const searchApi = text => `${API}?beer_name=${encodeURIComponent(text)}`;
 export function fetchBeers(action$) {
     return action$.pipe(
         ofType("SEARCH_INIT"),
-        debounceTime(1000),
+        debounceTime(400),
         // filter(x=>x.payload.trim().length),
         switchMap(({ payload }) => concat(
                 of({ type: "SET_STATUS", payload: "pending" }),
                 ajax.getJSON(searchApi(payload)).pipe(
                     map(x => fetchSuccessAction(x)),
-                    // delay(4000),
+                    delay(4000),
                     catchError(err => of(fetchFailedAction(err.response.message)))
                 )
             )
